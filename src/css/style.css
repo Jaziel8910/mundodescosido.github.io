@@ -1,0 +1,110 @@
+body { margin: 0; overflow: hidden; font-family: 'Inter', sans-serif; background-color: #0c0a09; color: #F3F4F6; }
+.panel {
+    position: absolute;
+    padding: 20px;
+    background-color: rgba(17, 24, 39, 0.94); /* bg-gray-900 with more opacity */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    z-index: 100;
+    border: 1px solid rgba(75, 85, 99, 0.6); /* border-gray-600 */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque sutil */
+}
+.panel h2 { font-size: 1.6rem; font-weight: bold; margin-bottom: 20px; color: #7DD3FC; /* sky-300 */ text-align: center; text-shadow: 0 0 5px rgba(125, 211, 252, 0.5); }
+.panel p { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6; }
+.panel button, .panel select, .panel input[type="range"], .panel input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #374151; /* gray-700 */
+    background-color: #1F2937; /* gray-800 */
+    color: #F3F4F6; /* gray-100 */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+}
+.panel button:hover { background-color: #3B82F6; /* blue-500 */ border-color: #60A5FA; /* blue-400 */ transform: translateY(-1px); }
+.panel button:active { transform: translateY(0px); }
+.panel input[type="range"] { padding: 0; }
+.panel label { display: block; margin-bottom: 6px; font-weight: 500; color: #CBD5E1; /* slate-300 */}
+.panel .sub-panel { background-color: rgba(31, 41, 55, 0.8); padding: 15px; border-radius: 8px; margin-top:10px; }
+
+
+#mainMenuPanel { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 380px; }
+#settingsPanel, #levelEditorPanel { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 480px; display: none; max-height: 90vh; overflow-y: auto;}
+#difficultyPanel { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; display: none; }
+
+#infoPanel { top: 10px; left: 10px; max-width: 380px; }
+#shopPanel { top: 10px; left: 10px; max-width: 520px; max-height: 85vh; overflow-y: auto; display: none; }
+
+.highlight { color: #A78BFA; font-weight: bold; }
+#crosshair { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; background-color: rgba(255, 255, 255, 0.8); border-radius: 50%; transform: translate(-50%, -50%); z-index: 99; pointer-events: none; display: none;}
+#levelInfo { position: absolute; top: 20px; right: 20px; padding: 10px 15px; background-color: rgba(31, 41, 55, 0.88); border-radius: 8px; font-size: 1.1rem; font-weight: bold; color: #FBBF24; z-index: 100; display: none;}
+#coinInfo { position: absolute; top: 70px; left: 10px; padding: 10px 15px; background-color: rgba(250, 204, 21, 0.88); border-radius: 8px; font-size: 1rem; font-weight: bold; color: #1F2937; z-index: 100; display: none;}
+#powerUpInfo, #slowMoInfo { position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); padding: 8px 12px; background-color: rgba(16, 185, 129, 0.9); border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #F3F4F6; z-index: 100; display: none;}
+#slowMoInfo { bottom: 100px; background-color: rgba(96, 165, 250, 0.9); /* blue-400 */}
+
+#inventoryBar {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: rgba(17, 24, 39, 0.85);
+    border-radius: 8px;
+    z-index: 100;
+    display: none;
+}
+.inventory-slot {
+    width: 55px; height: 55px; background-color: rgba(55, 65, 81, 0.7);
+    border: 2px solid #4B5563; border-radius: 6px; display: flex; align-items: center;
+    justify-content: center; font-size: 0.7rem; color: white; position: relative; cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+}
+.inventory-slot:hover { transform: scale(1.1); background-color: rgba(75, 85, 99, 0.8); }
+.inventory-slot .powerup-icon { width: 35px; height: 35px; border-radius: 4px; }
+.inventory-slot .powerup-name {
+    position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+    font-size: 0.75rem; background-color: rgba(0,0,0,0.8); padding: 2px 4px; border-radius: 3px;
+}
+ .inventory-slot.empty { background-color: rgba(55, 65, 81, 0.4); }
+
+#shopPanel h2 { color: #F59E0B; }
+.shop-item { background-color: rgba(55, 65, 81, 0.8); padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid rgba(75, 85, 99, 0.8); }
+.shop-item h3 { font-size: 1.2rem; color: #93C5FD; margin-bottom: 8px; }
+.shop-item p { font-size: 0.9rem; margin-bottom: 12px; }
+.shop-item button { padding: 10px 15px; font-size: 0.9rem; border-radius: 6px; }
+
+#victoryScreen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); color: white; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; z-index: 200;
+}
+#victoryScreen h1 { font-size: 3.5rem; margin-bottom: 25px; color: #FBBF24; text-shadow: 0 0 10px #FBBF24;}
+#victoryScreen p { font-size: 1.3rem; margin-bottom: 35px; max-width: 600px; line-height: 1.7; }
+#victoryScreen button { padding: 15px 35px; font-size: 1.3rem; }
+
+.slider-value { display: inline-block; margin-left: 10px; color: #9CA3AF; }
+.experimental-toggle { margin-top: 15px; padding: 10px; background-color: #4B5563; border-radius: 6px; }
+.experimental-toggle label { font-size: 1rem; color: #FBBF24; }
+.experimental-toggle input[type="checkbox"] { margin-right: 10px; transform: scale(1.2); }
+
+#saveSlotsPanel {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto;
+    background: rgba(17,24,39,0.97);
+    border-radius: 12px; z-index: 150; display: none;
+    padding: 24px;
+}
+#saveSlotsPanel h2 { color: #F59E0B; }
+.save-slot {
+    background: rgba(55,65,81,0.8); border-radius: 8px; margin-bottom: 14px; padding: 14px;
+    border: 1px solid rgba(75,85,99,0.7); display: flex; align-items: center; justify-content: space-between;
+}
+.save-slot .slot-info { flex: 1; }
+.save-slot .slot-actions button { margin-left: 8px; min-width: 80px; }
+.save-slot-empty { color: #9CA3AF; font-style: italic; }

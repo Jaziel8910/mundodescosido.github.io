@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Descosido - Edición Definitiva</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="saveSlotsPanel" class="panel">
+        <h2>Partidas Guardadas</h2>
+        <div id="saveSlotsContainer"></div>
+        <button id="closeSaveSlotsPanel" class="mt-2 bg-gray-600 hover:bg-gray-700">Cerrar</button>
+    </div>
+
+    <div id="mainMenuPanel" class="panel">
+        <h2>Mundo Descosido: Edición Definitiva</h2>
+        <button id="playButton">Jugar</button>
+        <button id="levelEditorButton">Creador de Escenarios (Beta)</button>
+        <button id="shopButtonMainMenu">Tienda</button>
+        <button id="settingsButtonMainMenu">Ajustes</button>
+        <button id="loadGameButton" class="mt-2 bg-green-600 hover:bg-green-700">Cargar Partida (Conceptual)</button>
+        <button id="saveSlotsButton" class="mt-2 bg-yellow-600 hover:bg-yellow-700">Partidas Guardadas</button>
+        <p class="text-xs text-center mt-4 text-gray-400">Versión del Caos: 2.1.0 - Parkour Aquí y Allá</p>
+    </div>
+
+    <div id="difficultyPanel" class="panel">
+        <h2>Seleccionar Dificultad</h2>
+        <button data-difficulty="normal">Normal (Aventura Casual)</button>
+        <button data-difficulty="hard">Difícil (Desafío Intenso)</button>
+        <button data-difficulty="extreme">EXTREMO (Pura Locura)</button>
+        <button id="backToMenuFromDifficulty" class="mt-2 bg-gray-600 hover:bg-gray-700">Volver</button>
+    </div>
+
+    <div id="settingsPanel" class="panel">
+        <h2>Ajustes</h2>
+        <div class="sub-panel">
+            <label for="graphicsQuality">Calidad Gráfica:</label>
+            <select id="graphicsQuality">
+                <option value="low">Bajo</option>
+                <option value="medium">Medio</option>
+                <option value="high">Alto</option>
+                <option value="ultra" selected>Ultra</option>
+                <option value="rtx5090">PC GAMER ULTRA 4K CON RTX 5090</option>
+            </select>
+        </div>
+        <div class="sub-panel mt-3">
+            <label for="soundVolume">Volumen (Conceptual): <span id="volumeValue" class="slider-value">100</span></label>
+            <input type="range" id="soundVolume" min="0" max="100" value="100">
+        </div>
+        <div class="sub-panel mt-3 experimental-toggle">
+            <label for="experimentalFeaturesToggle" class="flex items-center">
+                <input type="checkbox" id="experimentalFeaturesToggle" class="mr-2">
+                Activar Funciones Experimentales (Beta)
+            </label>
+        </div>
+        <div id="experimentalOptions" style="display:none;" class="sub-panel mt-2">
+            <label for="dayNightToggle">Ciclo Día/Noche (Experimental):</label>
+            <button id="dayNightToggle" data-enabled="false">Desactivado</button>
+             <p class="text-xs text-gray-400 mt-1">Afecta la iluminación y puede causar eventos aleatorios.</p>
+        </div>
+        <button id="backToMenuFromSettings" class="mt-4 bg-gray-600 hover:bg-gray-700">Volver al Menú</button>
+    </div>
+
+    <div id="levelEditorPanel" class="panel">
+        <h2>Creador de Escenarios (Beta v2)</h2>
+        <div class="sub-panel">
+            <label for="editorSeedInput">Semilla del Escenario:</label>
+            <input type="text" id="editorSeedInput" placeholder="Dejar vacío para aleatorio">
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-3">
+            <div class="sub-panel">
+                <label for="platformSpread">Dispersión X: <span id="spreadValue" class="slider-value">4.5</span></label>
+                <input type="range" id="platformSpread" min="1.5" max="10" value="4.5" step="0.1">
+            </div>
+            <div class="sub-panel">
+                <label for="platformHeightVariation">Variación Altura Y: <span id="heightVarValue" class="slider-value">2.0</span></label>
+                <input type="range" id="platformHeightVariation" min="0.2" max="5" value="2.0" step="0.1">
+            </div>
+            <div class="sub-panel">
+                <label for="platformForwardGap">Espacio Adelante Z: <span id="forwardGapValue" class="slider-value">4.5</span></label>
+                <input type="range" id="platformForwardGap" min="1.5" max="10" value="4.5" step="0.1">
+            </div>
+            <div class="sub-panel">
+                <label for="platformSizeMin">Tamaño Mín Plataforma: <span id="sizeMinValue" class="slider-value">1.5</span></label>
+                <input type="range" id="platformSizeMin" min="0.5" max="3" value="1.5" step="0.1">
+            </div>
+            <div class="sub-panel">
+                <label for="platformSizeMax">Tamaño Máx Plataforma: <span id="sizeMaxValue" class="slider-value">3.5</span></label>
+                <input type="range" id="platformSizeMax" min="2" max="6" value="3.5" step="0.1">
+            </div>
+            <div class="sub-panel">
+                <label for="checkpointFrequency">Frecuencia Checkpoints: <span id="checkpointFreqValue" class="slider-value">0.05</span></label>
+                <input type="range" id="checkpointFrequency" min="0.01" max="0.2" value="0.05" step="0.01">
+            </div>
+             <div class="sub-panel">
+                <label for="collectibleFrequency">Frecuencia Coleccionables: <span id="collectibleFreqValue" class="slider-value">0.3</span></label>
+                <input type="range" id="collectibleFrequency" min="0.0" max="0.8" value="0.3" step="0.05">
+            </div>
+        </div>
+        <button id="generateAndPlayEditor" class="mt-4">Generar y Jugar Escenario</button>
+        <button id="backToMenuFromEditor" class="mt-2 bg-gray-600 hover:bg-gray-700">Volver al Menú</button>
+    </div>
+
+    <div id="infoPanel" class="panel" style="display: none;">
+        <h2 id="worldTitle">Obby Descosido</h2>
+        <div class="seed-input-container">
+            <p><strong>Semilla Partida:</strong> <span id="worldSeed" class="highlight">N/A</span></p>
+        </div>
+        <p class="mt-2"><strong>Distancia Máxima (Semilla Actual):</strong> <span id="maxDistance" class="highlight">0m</span></p>
+        <p id="statusMessage" class="mt-2 text-sm text-teal-300"></p>
+        <button id="saveGameButtonIngame" class="mt-2 text-xs bg-green-500 hover:bg-green-600">Guardar Progreso (Conceptual)</button>
+        <button id="saveSlotsButtonIngame" class="mt-2 text-xs bg-yellow-600 hover:bg-yellow-700">Partidas Guardadas</button>
+    </div>
+
+    <div id="shopPanel" class="panel">
+         <div class="flex justify-between items-center mb-4">
+            <h2 class="text-center text-2xl flex-grow">Tienda del Caos</h2>
+            <div class="text-right">
+                <p class="text-lg">Monedas: <span id="shopCoinCounter" class="font-bold text-yellow-400">0</span></p>
+            </div>
+        </div>
+        <div id="shopItemsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto p-2">
+            </div>
+        <p class="text-xs text-center mt-4">Presiona 'T' para cerrar la tienda y 'ESC' para volver al menú.</p>
+    </div>
+
+    <div id="levelInfo">Distancia: <span id="levelCounter">0</span>m</div>
+    <div id="coinInfo">Monedas: <span id="coinCounter">0</span></div>
+    <div id="crosshair"></div>
+    <div id="powerUpInfo"></div>
+    <div id="slowMoInfo">CÁMARA LENTA</div>
+
+    <div id="inventoryBar"></div>
+
+    <div id="victoryScreen" class="panel">
+        <h1>¡MANIFESTASTE LA VICTORIA!</h1>
+        <p>Llegaste a los 10,000m. Has conquistado este fragmento del Mundo Descosido... por ahora. El caos es infinito y siempre hay nuevas realidades que explorar (o romper).</p>
+        <p class="text-sm">"And that's the way the cookie crumbles in this simulation, xoxo." - Charli XCX (probablemente)</p>
+        <button id="victoryBackToMenu">Volver al Menú Principal</button>
+    </div>
+
+    <audio id="uiClickSound" src="https://cdn.jsdelivr.net/gh/naptha/tiny-soundfonts@master/sfx/Click.ogg" preload="auto"></audio>
+    <audio id="coinSound" src="https://cdn.jsdelivr.net/gh/naptha/tiny-soundfonts@master/sfx/Powerup.ogg" preload="auto"></audio>
+    <audio id="powerupSound" src="https://cdn.jsdelivr.net/gh/naptha/tiny-soundfonts@master/sfx/Jump.ogg" preload="auto"></audio>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
