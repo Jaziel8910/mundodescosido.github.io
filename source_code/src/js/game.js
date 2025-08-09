@@ -151,6 +151,32 @@ function resetGameLogic() {
  * Sets up all event listeners for the application.
  */
 function setupEventListeners() {
+    // A helper to link a slider to its text display
+    const setupSliderListener = (sliderId, displayId) => {
+        const slider = document.getElementById(sliderId);
+        const display = document.getElementById(displayId);
+        if (slider && display) {
+            // Set initial value
+            display.textContent = slider.value;
+            // Add listener to update on change
+            slider.addEventListener('input', () => {
+                display.textContent = slider.value;
+            });
+        }
+    };
+
+    // Settings panel sliders
+    setupSliderListener('soundVolume', 'volumeValue');
+
+    // Level editor panel sliders
+    setupSliderListener('platformSpread', 'spreadValue');
+    setupSliderListener('platformHeightVariation', 'heightVarValue');
+    setupSliderListener('platformForwardGap', 'forwardGapValue');
+    setupSliderListener('platformSizeMin', 'sizeMinValue');
+    setupSliderListener('platformSizeMax', 'sizeMaxValue');
+    setupSliderListener('checkpointFrequency', 'checkpointFreqValue');
+    setupSliderListener('collectibleFrequency', 'collectibleFreqValue');
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (state.currentGameState === GAME_STATE.PLAYING) {
